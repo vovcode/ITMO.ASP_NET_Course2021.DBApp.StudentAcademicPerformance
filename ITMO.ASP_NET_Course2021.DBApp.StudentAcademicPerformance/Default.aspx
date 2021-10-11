@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ITMO.ASP_NET_Course2021.DBApp.StudentAcademicPerformance.Default" %>
-<%--<asp:Content ID="Content1" ContentPlaceHolderID="navmenu" runat="server">Работа с табелем успеваемости</asp:Content>--%>
 <asp:Content ID="Content2" ContentPlaceHolderID="contentBody" runat="server">
     <style type="text/css">
         .auto-style1 {
@@ -23,6 +22,17 @@
         }
         .auto-style6 {
             width: 357px;
+        }
+        .auto-style7 {
+            width: 192px;
+            height: 17px;
+        }
+        .auto-style8 {
+            height: 17px;
+        }
+        .auto-style9 {
+            width: 357px;
+            height: 17px;
         }
     </style>
         <div>
@@ -69,20 +79,20 @@
 
                     </td>
                     <td>
-                        <asp:Label ID="lblSuccessMsg" runat="server" ForeColor="Green"></asp:Label>
+                        <asp:Label ID="lblSuccessMsg" runat="server" ForeColor="White" CssClass="clear"></asp:Label>
                     </td>
                     <td class="auto-style6">
                         &nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style1">
+                    <td class="auto-style7">
                          
                     </td>
-                    <td>
-                        <asp:Label ID="lblErrorMsg" runat="server" ForeColor="Red"></asp:Label>
+                    <td class="auto-style8">
+                        <asp:Label ID="lblErrorMsg" runat="server" ForeColor="White"></asp:Label>
                     </td>
-                    <td class="auto-style6">
-                        &nbsp;</td>
+                    <td class="auto-style9">
+                        </td>
                 </tr>
             </table>
             <br />
