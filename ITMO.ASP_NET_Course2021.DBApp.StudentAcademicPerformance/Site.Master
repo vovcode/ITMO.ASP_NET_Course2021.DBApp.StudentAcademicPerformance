@@ -1,0 +1,33 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="ITMO.ASP_NET_Course2021.DBApp.StudentAcademicPerformance.Masterpages.Master" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>
+    </title>
+    <link href="Stylesheets/main.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="navmenu" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="wrapper">
+            <div class="menu">
+                <ul>
+                    <li><a href="Default.aspx">Работа с табелем успеваемости</a></li>
+                        <li><a href="Extremes.aspx">Крайние показатели по учебной группе</a></li>                 
+                </ul>
+            </div>
+            <div class="clear"></div>
+            <div class="content">
+            <asp:ContentPlaceHolder ID="contentBody" runat="server">
+            </asp:ContentPlaceHolder>
+            </div>
+            <div class="clear"></div>
+            <div class="footer">
+                <h2>Это первая версия веб-приложения</h2>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
