@@ -18,7 +18,8 @@ namespace ITMO.ASP_NET_Course2021.DBApp.StudentAcademicPerformance
             {
                 btnDelete.Enabled = false;
                 FillGridView();
-            }  
+            }
+           
         }
         protected void btnClear_Click(object sender, EventArgs e)//Кнопка очистки полей ввода от информации
         {
@@ -52,24 +53,29 @@ namespace ITMO.ASP_NET_Course2021.DBApp.StudentAcademicPerformance
             avgMark = AverageMark(twos, threes, fours, fives);
             totalMarkWeight = TotalMarkWeight(twos, threes, fours, fives);
 
-            if (sqlConnection.State == ConnectionState.Closed)
-                sqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("StudentCreateOrUpdate", sqlConnection);
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.AddWithValue("@StudentId", (hStudentId.Value == "" ?0:Convert.ToInt32(hStudentId.Value)));
-            sqlCommand.Parameters.AddWithValue("@FullName",txtFullName.Text.Trim());
-            sqlCommand.Parameters.AddWithValue("@ResultString",txtGrades.Text.Trim());
-            sqlCommand.Parameters.AddWithValue("@GPA", avgMark);
-            sqlCommand.Parameters.AddWithValue("@TotalScore", totalMarkWeight);
-            sqlCommand.ExecuteNonQuery();
-            sqlConnection.Close();
-            string studentID = hStudentId.Value;
-            Clear();
-            if (studentID == "")
-                lblSuccessMsg.Text = "Запись сохранена успешно";
+            if (txtFullName.Text != "" || txtGrades.Text != "")
+            {
+                if (sqlConnection.State == ConnectionState.Closed)
+                    sqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("StudentCreateOrUpdate", sqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@StudentId", (hStudentId.Value == "" ? 0 : Convert.ToInt32(hStudentId.Value)));
+                sqlCommand.Parameters.AddWithValue("@FullName", txtFullName.Text.Trim());
+                sqlCommand.Parameters.AddWithValue("@ResultString", txtGrades.Text.Trim());
+                sqlCommand.Parameters.AddWithValue("@GPA", avgMark);
+                sqlCommand.Parameters.AddWithValue("@TotalScore", totalMarkWeight);
+                sqlCommand.ExecuteNonQuery();
+                sqlConnection.Close();
+                string studentID = hStudentId.Value;
+                Clear();
+                if (studentID == "")
+                    lblSuccessMsg.Text = "Запись сохранена успешно";
+                else
+                    lblSuccessMsg.Text = "Запись обновлена успешно";
+                FillGridView();
+            }
             else
-                lblSuccessMsg.Text = "Запись обновлена успешно";
-            FillGridView();
+                lblErrorMsg.Text = "Поля ввода не могут быть пустыми";
         }
         protected void btnDelete_Click(object sender, EventArgs e)//Кнопка удаления записи о студенте
         {
